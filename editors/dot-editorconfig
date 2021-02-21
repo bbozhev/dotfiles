@@ -1,0 +1,50 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# 2 space indentation
+[*.java]
+indent_style = space
+indent_size = 2
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
+
+# 4-width tab indentation
+[*.{conf,html,sh,xml,php}]
+indent_style = tab
+indent_size = 4
+
+# Tab indentation (no size specified)
+[*.{css,js}]
+indent_style = tab
+
+# Space indentation
+[*.{yml}]
+indent_style = space
+
+# Indentation override for all JS under lib directory
+#[lib/**.js]
+#indent_style = space
+#indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+#[{package.json,.travis.yml}]
+#indent_style = space
+#indent_size = 2
+
+[*.php]
+insert_final_newline = false
+
+[*.tsv]
+trim_trailing_whitespace = false
+indent_size = 20
