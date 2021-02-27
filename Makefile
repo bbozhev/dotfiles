@@ -48,26 +48,29 @@ make.get.info:
 brew.pkg.list:
 	brew list > $(SRC_PATH)/system/brew-$(shell date +"%F").pkgs
 
+.PHONY: install.brew
+install.brew:
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
+
+.PHONY: install.misc.tools
+install.misc.tools: install.brew
+	brew install wget curl jq tar git fd
+
+install.fish: install.brew 
+	brew install fish
+
+.PHONY: install.all.pkgs
+install.all.pkgs: install.brew
+	for pkg in $$(cat $(SRC_PATH)/system/brew.pkgs); do brew install "$$pkg"; done
+
 .PHONY: backup.fish.config
 backup.fish.config:
 ifeq (,$(wildcard $(HOME)/.config/fish))
     mv $(HOME)/.config/fish $(HOME)/.config/back.fish
 endif
 
-.PHONY: backup.vim.config
-backup.vim.config:
-ifeq (,$(wildcard $(HOME)/.vim/))
-    mv $(HOME)/.vim/ $(HOME)/.back.vim/
-endif
-
-ifeq (,$(wildcard $(HOME)/.vimrc))
-    mv $(HOME)/.vimrc $(HOME)/.back.vimrc
-endif
-
-
 .PHONY: bckup.all.configs
 backup.all.configs: backup.fish.config
-	@echo "Backing up fish config"
 #	cp $(HOME)/.vimrc $(HOME)/back.vimrc
 #	cp $(HOME)/.config/fish $(HOME)/.config/back.fish
 #	cp $(HOME)/.vim $(HOME)/back.vim
