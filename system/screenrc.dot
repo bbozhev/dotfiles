@@ -1,0 +1,15 @@
+# don't want a startup message
+startup_message off
+
+# fish as screen default shell
+shell -"/usr/bin/env fish"
+
+# enable UTF-8
+defutf8 on
+
+# big scrollback buffer
+defscrollback 64000
+
+altscreen on
+
+

@@ -7,6 +7,14 @@ bdw-gc
 c-ares
 cairo
 cli53
+coreutils
+moreutils
+findutils
+binutils
+tcpflow
+tcpreplay
+tcptrace
+sqlmap
 docbook
 docbook-xsl
 docker
@@ -124,6 +132,9 @@ xz
 zstd
 appcleaner
 aws-vault
+p7zip
+pv
+lynx
 chromium
 docker
 firefox

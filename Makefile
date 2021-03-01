@@ -8,9 +8,12 @@ export OS ?= $(shell uname -s | tr '[:upper:]' '[:lower:]')
 export SRC_PATH ?= $(shell 'pwd')
 
 # Set default make target print out info 
-.DEFAULT_GOAL := make.get.info
+.DEFAULT_GOAL := get.info
 
-# define standard colors
+# Get all .dot files for symlinks / backup configs
+DOT_FILES := $(shell find $(SRC_PATH) -name '*.dot')
+
+# Define some colors
 ifneq (,$(findstring xterm,${TERM}))
 	BLACK        := $(shell tput -Txterm setaf 0)
 	RED          := $(shell tput -Txterm setaf 1)
@@ -36,9 +39,12 @@ endif
 # Get some package names looped
 brew_all_pkgs := $(file < $(SRC_PATH)/system/brew.pkgs)
 
+.PHONY: get.dot.files
+get.dot.files:
+	@echo "$(DOT_FILES)"
 
-.PHONY: make.get.info
-make.get.info:
+.PHONY: get.info
+get.info:
 	@echo "${GREEN}Date:${RESET}\t\t ${YELLOW}$(shell date +"%F")${RESET}"
 	@echo "${GREEN}OS:${RESET}\t\t ${YELLOW}$(OS)${RESET}"
 	@echo "${GREEN}usr_home:${RESET}\t$(YELLOW) $(HOME)${RESET}"
@@ -47,6 +53,7 @@ make.get.info:
 .PHONY: brew.pkg.list
 brew.pkg.list:
 	brew list > $(SRC_PATH)/system/brew-$(shell date +"%F").pkgs
+	brew cleanup
 
 .PHONY: install.brew
 install.brew:
@@ -62,6 +69,7 @@ install.fish: install.brew
 .PHONY: install.all.pkgs
 install.all.pkgs: install.brew
 	for pkg in $$(cat $(SRC_PATH)/system/brew.pkgs); do brew install "$$pkg"; done
+	brew cleanup
 
 .PHONY: backup.fish.config
 backup.fish.config:
