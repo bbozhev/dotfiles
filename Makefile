@@ -61,7 +61,7 @@ brew.pkg.list: ## List brew packages and update $(SRC_PATH)/system/brew-$date.pk
 	brew cleanup
 
 .PHONY: apply.osx.settings
-install.osx.xcode: ## Apply MacOS settings from system/macos.sh
+apply.osx.settings: ## Apply MacOS settings from system/macos.sh
 	$(shell system/macos.sh)
 
 .PHONY: install.osx.xcode
