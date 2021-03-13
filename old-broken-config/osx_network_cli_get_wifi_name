@@ -1,0 +1,10 @@
+# get wifi / ariport preferred networks
+networksetup -listpreferredwirelessnetworks en0
+
+
+
+# wifi card / airport full on info
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I
+
+# shows wifi network only
+networksetup -getairportnetwork en0

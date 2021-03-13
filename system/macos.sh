@@ -120,7 +120,7 @@ defaults write com.apple.dock mineffect -string "suck"
 defaults write com.apple.dock magnification -bool false
 
 # Position on screen: 'left', 'bottom', 'right'
-defaults write com.apple.dock orientation -string "right"
+defaults write com.apple.dock orientation -string "bottom"
 
 # DON'T minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool false

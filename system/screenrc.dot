@@ -1,8 +1,8 @@
 # don't want a startup message
 startup_message off
 
-# fish as screen default shell
-shell -"/usr/bin/env fish"
+# fish as screen default shell DONT DO THIS AT HOME.
+# shell -"/usr/bin/env fish"
 
 # enable UTF-8
 defutf8 on
